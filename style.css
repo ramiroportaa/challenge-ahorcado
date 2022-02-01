@@ -1,27 +1,148 @@
-.titulo {
-  padding: 15px;
-  width: 30vw;
+:root{
+  font-size: 16px;
+}
+
+*{
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.1875rem;
+  text-align: center;
+}
+
+body{
+  background-color: #F3F5FC;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#header{
+  display: flex;
+  flex-direction: row;
+}
+
+#logo{
+  width: 0%;
+  margin: 2.5rem 0 2.5rem 5.25rem;
+}
+
+#titulo {
+  width: 100%;
+  position: relative;
+  left: -2.625rem;
+  margin: 2.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#titulo h1 {
+  font-size: 3rem;
+  width: fit-content;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#inicio{
+  display: block;
   margin: auto;
 }
 
-.btn {
-  border: 0;
+.btn-iniciar {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   color: white;
-  font-weight: bold;
-  background-color: blue;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 0.5em;
+  background-color: #0A3871;
+  padding: 1.5rem;
+  margin-bottom: 2.375rem;
+  border-radius: 1.5rem;
+  width: 19.5rem;
+  height: 7rem;
+  border: 0;
+}
+
+.btn-iniciar:hover {
+  background-color:#072B61;
+}
+
+.btn{
+  background-color: transparent;
+  border: 1px solid #0A3871;
+  box-sizing: border-box;
+  border-radius: 1.5rem;
+  height: 4.1875rem;
+  padding: 1.5rem;
+  color: #0A3871;
+}
+
+.btn:hover{
+  background-color: #EFF1FA;
+}
+
+.btn-bg{
+  background-color: #0A3871;
+  color: white;
+}
+
+.btn-bg:hover{
+  background-color: #072B61;
+}
+
+#agregar-palabra{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  min-height: 55vh;
+  justify-content: space-between;
 }
 
 .text-input {
-  border-radius: 0.5em;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  font-size: 2rem;
+  text-align: left;
+  color: #0A3871;
+  border: 0;
   display: block;
-  padding: 0.5em;
-  width: 30%;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90%;
+  height: 7rem;
+  margin-left: 1rem;
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.info p{
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 12px;
+  }
+  #header{
+    display: block;
+  }
+  #logo{
+    margin: 2.5rem;
+  }
+  #titulo {
+    left: 0;
+    margin-top: 5rem;
+  }
+  #agregar-palabra{
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 768px) and (max-width:1079px) {
+  #agregar-palabra{
+    min-height: 80vh;
+  }
 }

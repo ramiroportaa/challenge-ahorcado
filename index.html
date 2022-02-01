@@ -5,22 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Challenge ONE - Ahorcado</title>
+    <!-- Link a google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="inicio" style="display: none;">
-      <div style="text-align:center; margin: 50px 0px;">
-        <h1 class="titulo">Ahorcado</h1>
-        <button class="btn" id="iniciar-juego">INICIAR JUEGO</button>
+    <div id="header">
+       <div id="logo">
+      <img src="img/logo.png" alt="Logo ALURA">
       </div>
-      <div style="text-align:center">
-        <input class="text-input" type="text" id="input-nueva-palabra" placeholder="Escriba una nueva palabra">
-        <button class="btn" id="nueva-palabra">AGREGAR PALABRA</button> 
+      <div id="titulo">
+        <h1>Ahorcado</h1>
+      </div>   
+    </div>
+
+    <div id="inicio" style="display: none;">
+      <div>
+        <button class="btn-iniciar" id="iniciar-juego">Iniciar juego</button>
+      </div>
+      <div>
+        <button class="btn" id="nueva-palabra" style="width: 17.5rem;">Agregar palabra</button> 
       </div>
     </div>
-    
+
+    <div id="agregar-palabra">
+      <div class="input">
+        <input class="text-input" type="text" id="input-nueva-palabra" placeholder="Ingrese una palabra">
+      </div>
+      <div class="buttons">
+        <div class="info">
+          <img src="img/Info.png" style="width: 1rem; height: 1rem;">
+          <p>Máx. de 8 letras</p>
+        </div>
+        <div>
+          <button class="btn btn-bg" style="width: 20.75rem; margin: 1rem;" id="guardar">Guardar y empezar</button>
+          <button class="btn" id="cancelar" style="width: 20.75rem; margin: 1rem;">Cancelar</button> 
+        </div> 
+      </div>
+    </div>
+
     <div id="juego" style="text-align:center;">
-      <canvas id="ahorcado" height="800px" width="1200px" style="background-color: black;"></canvas>
+      <canvas id="ahorcado" height="800px" width="1200px" style="background-color: black; display: none;"></canvas>
     </div>
     <!-- JAVASCRIPT -->
     <script type="text/javascript" src="canvas.js"></script>
