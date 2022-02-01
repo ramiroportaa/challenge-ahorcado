@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Challenge ONE - Ahorcado</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="inicio" style="display: none;">
+      <div style="text-align:center; margin: 50px 0px;">
+        <h1 class="titulo">Ahorcado</h1>
+        <button class="btn" id="iniciar-juego">INICIAR JUEGO</button>
+      </div>
+      <div style="text-align:center">
+        <input class="text-input" type="text" id="input-nueva-palabra" placeholder="Escriba una nueva palabra">
+        <button class="btn" id="nueva-palabra">AGREGAR PALABRA</button> 
+      </div>
+    </div>
+    
+    <div id="juego" style="text-align:center;">
+      <canvas id="ahorcado" height="800px" width="1200px" style="background-color: black;"></canvas>
+    </div>
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="canvas.js"></script>
+    <script type="text/javascript" src="ahorcado.js"></script>
+  </body>
+</html>
