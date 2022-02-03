@@ -18,6 +18,16 @@ body{
   min-height: 100vh;
 }
 
+footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 4;
+  color: black;
+  margin-bottom: 1rem;
+}
+
 #header{
   display: flex;
   flex-direction: row;
@@ -131,9 +141,12 @@ body{
 }
 
 #ahorcado{
-  width: 50%;
-  height: 60%;
+  width: 60%;
+  height: 40%;
   margin-bottom: 3rem;
+  background-color: white;
+  max-width: 1200px;
+  max-height: 800px;
 }
 
 .word{
@@ -182,8 +195,8 @@ body{
     max-width: 90%;
   }
   #ahorcado{
-    width: 100%;
-    height: 40vh;
+    width: 90%;
+    height: 60%;
   }
   .word{
     width: 100%;
@@ -212,9 +225,9 @@ body{
     min-height: 80vh;
   }
   #ahorcado{
-    width: 100%;
-    height: 40vh;
-  }  
+    width: 90%;
+    height: 60%;
+  }
 }
 
 .display-none{
