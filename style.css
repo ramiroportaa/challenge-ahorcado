@@ -144,7 +144,6 @@ footer {
   width: 60%;
   height: 40%;
   margin-bottom: 3rem;
-  background-color: white;
   max-width: 1200px;
   max-height: 800px;
 }
@@ -164,6 +163,7 @@ footer {
 .letter p{
   font-size: 3rem;
   color: #0A3871;
+  text-transform: uppercase;
 }
 
 .other{
@@ -176,6 +176,7 @@ footer {
 
 .other p{
   margin: 1rem;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {

@@ -22,7 +22,7 @@
       </div>   
     </div>
 
-    <div id="inicio" class="display-none">
+    <div id="inicio">
       <div>
         <button class="btn-iniciar" id="iniciar-juego">Iniciar juego</button>
       </div>
@@ -33,7 +33,7 @@
 
     <div id="agregar-palabra" class="display-none">
       <div class="input">
-        <input class="text-input" type="text" id="input-nueva-palabra" placeholder="Ingrese una palabra">
+        <input class="text-input" type="text" id="input-nueva-palabra" placeholder="Ingrese una palabra" maxlength="8">
       </div>
       <div>
         <div class="info">
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div id="juego">
+    <div id="juego" class="display-none">
       <canvas id="ahorcado" width="600" height="400"></canvas>
       <div class="word">
 
@@ -80,22 +80,19 @@
           <img src="img/underline.png">
         </div>
         <div class="letter">
-          <p>A</p>
+          <p>a</p>
           <img src="img/underline.png">
         </div>
 
       </div>
 
       <div class="other">
-        <p>B</p>
+        <p>b</p>
         <p>J</p>
         <p>K</p>
         <p>C</p>
         <p>B</p>
         <p>J</p>
-        <p>K</p>
-        <p>C</p>
-        <p>F</p>
       </div>
 
       <div>
