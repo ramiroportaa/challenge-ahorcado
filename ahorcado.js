@@ -11,7 +11,29 @@ function mostrar (vista){
     vista.classList.remove("display-none");
 }
 
+function escogerPalabra (array){
+    const posicionRandom = Math.round(Math.random() * (array.length-1));
+    const secreto = array[posicionRandom];
+    return secreto;
+}
+
+function mostrarGuiones (palabra){
+    const word = document.querySelector(".word");
+    word.innerHTML = "";
+    const cantidad = palabra.length;
+    for (let i = 0; i < cantidad; i++) {
+        const letra = palabra[i];
+        word.innerHTML += `<div class="letter">
+                                <p id="${letra}" class="display-none">${letra}</p>
+                                <img src="img/underline.png">
+                            </div>`;
+    };
+}
+
 function IniciarJuego (){
+    const secreto = escogerPalabra(palabras);
+    mostrarGuiones(secreto);
+
     mostrar(vistaJuego);
 }
 
