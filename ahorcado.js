@@ -16,6 +16,8 @@ function mostrar (vista){
 function escogerPalabra (array){
     const posicionRandom = Math.round(Math.random() * (array.length-1));
     const secreto = array[posicionRandom];
+    //Eliminamos la palabra del array asi no se vuelve a elegir.
+    array.splice(posicionRandom,1);
     return secreto;
 }
 
@@ -39,43 +41,85 @@ function mostrarLetraCorrecta(letra) {
     ));
 }
 
-function escribirLetraIncorrecta(letra) { 
+function escribirLetraIncorrecta(errores) { 
     const other = document.querySelector(".other");
-    other.innerHTML += `<p>${letra}</p>`
+    other.innerHTML = "";
+    errores.forEach(error =>(other.innerHTML += `<p>${error}</p>`));
+    
 }
 
 function estaEnPalabra(letra, palabra) {
     return palabra.includes(letra);
 }
 
-function verificarLetra(letra) {
-    return regex.test(letra);
-}
-
-function IniciarJuego (){
-    let errores = [];
-    let letrasCorrectas = "";
-    const secreto = escogerPalabra(palabras);
-    mostrarGuiones(secreto);
-    document.addEventListener("keyup", (e)=>{
-        if (verificarLetra(e.key)) {
+function verificarLetra(secreto, errores, letrasCorrectas) {
+    document.addEventListener("keyup", function eventoKeyUp (e){
+        if (regex.test(e.key)) {
             let letra = e.key;
             if (estaEnPalabra(letra, secreto)) {
                 if (!letrasCorrectas.includes(letra)) {
-                    letrasCorrectas += letra;
+                    letrasCorrectas.push(letra);
                     mostrarLetraCorrecta(letra);
+                }else{
+                    alert(letra + " ya fue agregada");
                 }
             }else{
                 if (!errores.includes(letra)) {
                     errores.push(letra);
-                    escribirLetraIncorrecta(letra);
+                    escribirLetraIncorrecta(errores);
+                    switch (errores.length) {
+                        case 1:
+                            dibujarCabeza()
+                            break;
+                        case 2:
+                            dibujarCuerpo()
+                            break;
+                        case 3:
+                            dibujarPiernaDerecha()
+                            break;
+                        case 4:
+                            dibujarPiernaIzquierda()
+                            break;
+                        case 5:
+                            dibujarBrazoDerecho()
+                            break;
+                        case 6:
+                            dibujarBrazoIzquierdo()
+                            break;
+                    }
+                }else{
+                    alert(letra + " ya fue agregada");
                 }
             }
+            verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp);
         }else{
             //Mostrar algo cuando no pasa el REGEX
         }
     })
+}
+
+function verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp){
+    if (errores.length == 6) {
+        escribirTexto("PERDISTE","red");
+        mostrarPalabra(secreto);
+        document.removeEventListener("keyup", eventoKeyUp);
+    }
+    const dataArr = new Set(secreto);
+    let arraySecreto = [...dataArr];
+    if (letrasCorrectas.length == arraySecreto.length) {
+        escribirTexto("GANASTE","green");
+        document.removeEventListener("keyup", eventoKeyUp);
+    }
+}
+
+function IniciarJuego (){
+    let errores = [];
+    let letrasCorrectas = [];
+    const secreto = escogerPalabra(palabras);
+    inputMobile();
+    mostrarGuiones(secreto);
     mostrar(vistaJuego);
+    verificarLetra(secreto, errores, letrasCorrectas);
 }
 
 function AgregarPalabra (palabra){
@@ -83,6 +127,15 @@ function AgregarPalabra (palabra){
         palabras.push(palabra);
         alert("Se agregó: " + palabra);
     }
+}
+
+function inputMobile() {
+    const input = document.querySelector(".mobile");
+    input.addEventListener("input", ()=>{
+        setTimeout(() => {
+            input.value=""
+        }, 200);
+    })
 }
 
 const btnInciarJuego = document.getElementById("iniciar-juego");
@@ -115,5 +168,9 @@ btnNuevoJuego.onclick = ()=>{location.reload()};
 
 const btnDesistir = document.getElementById("desistir");
 btnDesistir.onclick = ()=>{
-    console.log("Logica para jugar la proxima palabra");
+    location.reload();
+    //Logica para desistir palabra y pasar al a siguiente.
+    //location reload pero almacenar antes el array de palabras en localsotrage, recuperarlo y mostrar vista ahorcado
+    //Si el array esta vacio, mostrar mensaje PERDISTE, FIN DEL JUEGO.
+    //O simplemente mostrar "PERDISTE" y la palabra.
 }

@@ -180,6 +180,12 @@ footer {
   text-transform: uppercase;
 }
 
+.mobile {
+  height: 3rem;
+  width: 6rem;
+  display: none;
+}
+
 @media (max-width: 768px) {
   :root {
     font-size: 12px;
@@ -220,6 +226,9 @@ footer {
     color: #495057;
     margin-bottom: 3rem;
   }
+  .mobile{
+    display: block;
+  }
 }
 
 @media (min-width: 768px) and (max-width:1079px) {
@@ -229,6 +238,9 @@ footer {
   #ahorcado{
     width: 90%;
     height: 60%;
+  }
+  .mobile{
+    display: block;
   }
 }
 
