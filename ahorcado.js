@@ -52,8 +52,8 @@ function estaEnPalabra(letra, palabra) {
     return palabra.includes(letra);
 }
 
-function verificarLetra(secreto, errores, letrasCorrectas) {
-    document.addEventListener("keyup", function eventoKeyUp (e){
+function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
+    nodo.addEventListener("keyup", function eventoKeyUp (e){
         if (regex.test(e.key)) {
             let letra = e.key;
             if (estaEnPalabra(letra, secreto)) {
@@ -94,6 +94,7 @@ function verificarLetra(secreto, errores, letrasCorrectas) {
             verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp);
         }else{
             //Mostrar algo cuando no pasa el REGEX
+            alert(e.key + "Incorrecto")
         }
     })
 }
@@ -112,14 +113,24 @@ function verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp){
     }
 }
 
+function inputMobile() {
+    const input = document.querySelector(".mobile");
+    input.addEventListener("keyup", ()=>{
+        setTimeout(() => {
+            input.value=""
+        }, 200);
+    });
+    return input;
+}
+
 function IniciarJuego (){
     let errores = [];
     let letrasCorrectas = [];
     const secreto = escogerPalabra(palabras);
-    inputMobile();
+    const mobile = inputMobile();
     mostrarGuiones(secreto);
     mostrar(vistaJuego);
-    verificarLetra(secreto, errores, letrasCorrectas);
+    verificarLetra(secreto, errores, letrasCorrectas, (screen.width < 1080) ? mobile : document);
 }
 
 function AgregarPalabra (palabra){
@@ -133,15 +144,6 @@ function AgregarPalabra (palabra){
         }
 
     }
-}
-
-function inputMobile() {
-    const input = document.querySelector(".mobile");
-    input.addEventListener("input", ()=>{
-        setTimeout(() => {
-            input.value=""
-        }, 200);
-    })
 }
 
 const btnInciarJuego = document.getElementById("iniciar-juego");
