@@ -124,8 +124,14 @@ function IniciarJuego (){
 
 function AgregarPalabra (palabra){
     if (palabra != "") {
-        palabras.push(palabra);
-        alert("Se agregó: " + palabra);
+        nuevaPalabra = palabra.toUpperCase();
+        if (!palabras.includes(nuevaPalabra)){
+            palabras.push(nuevaPalabra);
+            alert("Se agregó: " + nuevaPalabra);
+        }else{
+            alert(nuevaPalabra + " ya se habia agregado");
+        }
+
     }
 }
 
