@@ -52,6 +52,17 @@ function estaEnPalabra(letra, palabra) {
     return palabra.includes(letra);
 }
 
+function advertir(frase, colorbg) {
+    const adv = document.querySelector(".advertencias");
+    adv.textContent = frase;
+    adv.style.backgroundColor = colorbg;
+    adv.style.opacity = "1";
+    adv.style.marginBottom = "1rem"; 
+    setTimeout(() => {
+        adv.style.opacity = "0"; 
+    }, 2000);
+}
+
 function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
     nodo.addEventListener("keyup", function eventoKeyUp (e){
         let key = (screen.width < 1080) ? e.target.value : e.key;
@@ -62,7 +73,7 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
                     letrasCorrectas.push(letra);
                     mostrarLetraCorrecta(letra);
                 }else{
-                    alert(letra + " ya fue agregada");
+                    advertir(letra + " ya fue agregada", "green");
                 }
             }else{
                 if (!errores.includes(letra)) {
@@ -89,17 +100,12 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
                             break;
                     }
                 }else{
-                    alert(letra + " ya fue agregada");
+                    advertir(letra + " ya fue agregada", "yellow");
                 }
             }
             verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp);
         }else{
-            const adv = document.querySelector(".advertencias");
-            adv.textContent = "Solo se permiten LETRAS MAYUSCULAS";
-            adv.style.backgroundColor = "red";
-            setTimeout(() => {
-                adv.style.backgroundColor = "transparent"; 
-            }, 2000);
+            advertir("Solo se permiten LETRAS MAYUSCULAS", "red");
         }
     })
 }
