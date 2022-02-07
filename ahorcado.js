@@ -54,8 +54,9 @@ function estaEnPalabra(letra, palabra) {
 
 function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
     nodo.addEventListener("keyup", function eventoKeyUp (e){
-        if (regex.test(e.key)) {
-            let letra = e.key;
+        let key = (screen.width < 1080) ? e.target.value : e.key;
+        if (regex.test(key)) {
+            let letra = key;
             if (estaEnPalabra(letra, secreto)) {
                 if (!letrasCorrectas.includes(letra)) {
                     letrasCorrectas.push(letra);
@@ -100,7 +101,6 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
                 adv.style.backgroundColor = "transparent"; 
             }, 2000);
         }
-    console.log(e);
     })
 }
 
