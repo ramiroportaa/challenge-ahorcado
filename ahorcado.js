@@ -103,25 +103,27 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
                     advertir(letra + " ya fue agregada", "yellow");
                 }
             }
-            verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp);
+            let fin = verificarFinJuego(secreto, letrasCorrectas, errores);
+            fin && nodo.removeEventListener("keyup", eventoKeyUp);
         }else{
             advertir("Solo se permiten LETRAS MAYUSCULAS", "red");
         }
     })
 }
 
-function verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp){
+function verificarFinJuego(secreto, letrasCorrectas, errores){
     if (errores.length == 6) {
         escribirTexto("PERDISTE","red");
         mostrarPalabra(secreto);
-        document.removeEventListener("keyup", eventoKeyUp);
+        return true
     }
     const dataArr = new Set(secreto);
     let arraySecreto = [...dataArr];
     if (letrasCorrectas.length == arraySecreto.length) {
         escribirTexto("GANASTE","green");
-        document.removeEventListener("keyup", eventoKeyUp);
+        return true
     }
+    return false
 }
 
 function inputMobile() {
