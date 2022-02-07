@@ -100,6 +100,7 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
                 adv.style.backgroundColor = "transparent"; 
             }, 2000);
         }
+    console.log(e);
     })
 }
 
