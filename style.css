@@ -183,6 +183,7 @@ footer {
 .mobile {
   height: 3rem;
   width: 6rem;
+  margin: auto;
   display: none;
 }
 

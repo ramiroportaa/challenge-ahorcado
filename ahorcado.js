@@ -93,8 +93,12 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
             }
             verificarFinJuego(secreto, letrasCorrectas, errores, eventoKeyUp);
         }else{
-            //Mostrar algo cuando no pasa el REGEX
-            alert(e.key + "Incorrecto")
+            const adv = document.querySelector(".advertencias");
+            adv.textContent = "Solo se permiten LETRAS MAYUSCULAS";
+            adv.style.backgroundColor = "red";
+            setTimeout(() => {
+                adv.style.backgroundColor = "transparent"; 
+            }, 2000);
         }
     })
 }
