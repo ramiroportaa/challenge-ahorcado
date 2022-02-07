@@ -115,12 +115,14 @@ function verificarFinJuego(secreto, letrasCorrectas, errores){
     if (errores.length == 6) {
         escribirTexto("PERDISTE","red");
         mostrarPalabra(secreto);
+        btnDesistir.classList.add("display-none");
         return true
     }
     const dataArr = new Set(secreto);
     let arraySecreto = [...dataArr];
     if (letrasCorrectas.length == arraySecreto.length) {
         escribirTexto("GANASTE","green");
+        btnDesistir.classList.add("display-none");
         return true
     }
     return false
@@ -148,7 +150,7 @@ function IniciarJuego (){
 
 function AgregarPalabra (palabra){
     if (palabra != "") {
-        nuevaPalabra = palabra.toUpperCase();
+        nuevaPalabra = palabra.replace(/ /g, "").toUpperCase();
         if (!palabras.includes(nuevaPalabra)){
             palabras.push(nuevaPalabra);
             alert("Se agregó: " + nuevaPalabra);
@@ -185,13 +187,25 @@ const btnCancelar = document.getElementById("cancelar");
 btnCancelar.onclick = ()=>{location.reload()};
 
 const btnNuevoJuego = document.getElementById("nuevoJuego");
-btnNuevoJuego.onclick = ()=>{location.reload()};
+btnNuevoJuego.onclick = ()=>{
+    sessionStorage.removeItem("array");
+    location.reload();
+};
 
 const btnDesistir = document.getElementById("desistir");
 btnDesistir.onclick = ()=>{
+    sessionStorage.setItem("array", JSON.stringify(palabras));
     location.reload();
-    //Logica para desistir palabra y pasar al a siguiente.
-    //location reload pero almacenar antes el array de palabras en localsotrage, recuperarlo y mostrar vista ahorcado
-    //Si el array esta vacio, mostrar mensaje PERDISTE, FIN DEL JUEGO.
-    //O simplemente mostrar "PERDISTE" y la palabra.
+}
+
+//Capturamos array existente en sessionStorage con las palabras que no se han jugado y asi iniciar el juego desde este punto.
+nuevoArray = JSON.parse(sessionStorage.getItem("array"));
+if (nuevoArray.length > 0) {
+    palabras = nuevoArray;
+    console.log(nuevoArray);
+    IniciarJuego();
+}else{
+    escribirTexto("PERDISTE","red");
+    btnDesistir.classList.add("display-none");
+    mostrar(vistaJuego);
 }
