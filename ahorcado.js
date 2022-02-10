@@ -2,7 +2,7 @@ const vistaInicio = document.getElementById("inicio");
 const vistaAgregarPalabra = document.getElementById("agregar-palabra");
 const vistaJuego = document.getElementById("juego");
 
-var palabras = ["JUEGO", "ORACLE", "ONE", "ALURA", "AHORCADO"];
+var palabras = ["JUEGO", "ORACLE", "ONE", "ALURA", "AHORCADO", "LIBRO", "MATE", "COMIDA", "AMBIENTE", "HISTORIA", "PERSONA", "ETIQUETA", "PROGRAMA", "ESTRELLA", "ANIMAL", "JUSTICIA", "PAZ", "GUERRA", "FRIO", "CALOR", "DERECHO", "LIBERTAD", "TRABAJO", "BLOQUE", "BOLIVIA", "BRILLAR", "CADETE", "CANAL", "BARRIO", "ABEJA", "ASTROS", "CABEZA", "CABRA", "CAJA", "BANCO", "ACTO", "ABRIR", "BEBE", "BATE", "CHILE", "BRASIL", "CONO", "CORRER", "CUBA", "DEDOS", "MANOS", "PIES", "CUERPO", "PIERNAS", "PELO", "CARA", "OJOS", "NARIZ", "DIENTES", "OREJAS", "CEJAS", "LENTES"];
 
 const regex = new RegExp("^[A-Z\\s]+$");
 
@@ -199,13 +199,15 @@ btnDesistir.onclick = ()=>{
 }
 
 //Capturamos array existente en sessionStorage con las palabras que no se han jugado y asi iniciar el juego desde este punto.
-nuevoArray = JSON.parse(sessionStorage.getItem("array"));
-if (nuevoArray.length > 0) {
-    palabras = nuevoArray;
-    console.log(nuevoArray);
-    IniciarJuego();
-}else{
-    escribirTexto("PERDISTE","red");
-    btnDesistir.classList.add("display-none");
-    mostrar(vistaJuego);
+let nuevoArray = JSON.parse(sessionStorage.getItem("array"));
+if (nuevoArray) {
+    if (nuevoArray.length > 0) {
+        palabras = nuevoArray;
+        console.log(nuevoArray);
+        IniciarJuego();
+    }else{
+        escribirTexto("PERDISTE","red");
+        btnDesistir.classList.add("display-none");
+        mostrar(vistaJuego);
+    }
 }
