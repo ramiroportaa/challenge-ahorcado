@@ -2,18 +2,18 @@ const vistaInicio = document.getElementById("inicio");
 const vistaAgregarPalabra = document.getElementById("agregar-palabra");
 const vistaJuego = document.getElementById("juego");
 
-var palabras = ["JUEGO", "ORACLE", "ONE", "ALURA", "AHORCADO", "LIBRO", "MATE", "COMIDA", "AMBIENTE", "HISTORIA", "PERSONA", "ETIQUETA", "PROGRAMA", "ESTRELLA", "ANIMAL", "JUSTICIA", "PAZ", "GUERRA", "FRIO", "CALOR", "DERECHO", "LIBERTAD", "TRABAJO", "BLOQUE", "BOLIVIA", "BRILLAR", "CADETE", "CANAL", "BARRIO", "ABEJA", "ASTROS", "CABEZA", "CABRA", "CAJA", "BANCO", "ACTO", "ABRIR", "BEBE", "BATE", "CHILE", "BRASIL", "CONO", "CORRER", "CUBA", "DEDOS", "MANOS", "PIES", "CUERPO", "PIERNAS", "PELO", "CARA", "OJOS", "NARIZ", "DIENTES", "OREJAS", "CEJAS", "LENTES"];
+const palabras = ["JUEGO", "ORACLE", "ONE", "ALURA", "AHORCADO", "LIBRO", "MATE", "COMIDA", "AMBIENTE", "HISTORIA", "PERSONA", "ETIQUETA", "PROGRAMA", "ESTRELLA", "ANIMAL", "JUSTICIA", "PAZ", "GUERRA", "FRIO", "CALOR", "DERECHO", "LIBERTAD", "TRABAJO", "BLOQUE", "BOLIVIA", "BRILLAR", "CADETE", "CANAL", "BARRIO", "ABEJA", "ASTROS", "CABEZA", "CABRA", "CAJA", "BANCO", "ACTO", "ABRIR", "BEBE", "BATE", "CHILE", "BRASIL", "CONO", "CORRER", "CUBA", "DEDOS", "MANOS", "PIES", "CUERPO", "PIERNAS", "PELO", "CARA", "OJOS", "NARIZ", "DIENTES", "OREJAS", "CEJAS", "LENTES"];
 
 const regex = new RegExp("^[A-Z\\s]+$");
 
-function mostrar (vista){
+const mostrar = (vista) =>{
     vistaInicio.classList.add("display-none");
     vistaAgregarPalabra.classList.add("display-none");
     vistaJuego.classList.add("display-none");
     vista.classList.remove("display-none");
 }
 
-function escogerPalabra (array){
+const escogerPalabra = (array) =>{
     const posicionRandom = Math.round(Math.random() * (array.length-1));
     const secreto = array[posicionRandom];
     //Eliminamos la palabra del array asi no se vuelve a elegir.
@@ -21,7 +21,7 @@ function escogerPalabra (array){
     return secreto;
 }
 
-function mostrarGuiones (palabra){
+const mostrarGuiones = (palabra) =>{
     const word = document.querySelector(".word");
     word.innerHTML = "";
     const cantidad = palabra.length;
@@ -34,25 +34,25 @@ function mostrarGuiones (palabra){
     };
 }
 
-function mostrarLetraCorrecta(letra) { 
+const mostrarLetraCorrecta = (letra)=> { 
     const letter = document.querySelectorAll(`.${letra}`);
     letter.forEach(letra =>(
         letra.classList.remove("display-none")
     ));
 }
 
-function escribirLetraIncorrecta(errores) { 
+const escribirLetraIncorrecta = (errores) => { 
     const other = document.querySelector(".other");
     other.innerHTML = "";
     errores.forEach(error =>(other.innerHTML += `<p>${error}</p>`));
     
 }
 
-function estaEnPalabra(letra, palabra) {
+const estaEnPalabra = (letra, palabra) => {
     return palabra.includes(letra);
 }
 
-function advertir(frase, colorbg) {
+const advertir = (frase, colorbg) => {
     const adv = document.querySelector(".advertencias");
     adv.textContent = frase;
     adv.style.backgroundColor = colorbg;
@@ -63,7 +63,7 @@ function advertir(frase, colorbg) {
     }, 2000);
 }
 
-function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
+const verificarLetra = (secreto, errores, letrasCorrectas, nodo=document) => {
     nodo.addEventListener("keyup", function eventoKeyUp (e){
         let key = (screen.width < 1080) ? e.target.value : e.key;
         if (regex.test(key)) {
@@ -111,7 +111,7 @@ function verificarLetra(secreto, errores, letrasCorrectas, nodo=document) {
     })
 }
 
-function verificarFinJuego(secreto, letrasCorrectas, errores){
+const verificarFinJuego = (secreto, letrasCorrectas, errores) => {
     if (errores.length == 6) {
         escribirTexto("PERDISTE","red");
         mostrarPalabra(secreto);
@@ -128,7 +128,7 @@ function verificarFinJuego(secreto, letrasCorrectas, errores){
     return false
 }
 
-function inputMobile() {
+const inputMobile = () => {
     const input = document.querySelector(".mobile");
     input.addEventListener("keyup", ()=>{
         setTimeout(() => {
@@ -138,7 +138,7 @@ function inputMobile() {
     return input;
 }
 
-function IniciarJuego (){
+const IniciarJuego = () => {
     let errores = [];
     let letrasCorrectas = [];
     const secreto = escogerPalabra(palabras);
@@ -148,7 +148,7 @@ function IniciarJuego (){
     verificarLetra(secreto, errores, letrasCorrectas, (screen.width < 1080) ? mobile : document);
 }
 
-function AgregarPalabra (palabra){
+const AgregarPalabra = (palabra) => {
     if (palabra != "") {
         nuevaPalabra = palabra.replace(/ /g, "").toUpperCase();
         if (!palabras.includes(nuevaPalabra)){
